@@ -1,3 +1,8 @@
-node_modules
-./pdfs
-.gitignore
+node_modules/
+*.env
+firebase-admin-key.json
+.firebaserc
+firebase.rules.json
+firestore-emulator/
+firebase
+firebase-debug.log
