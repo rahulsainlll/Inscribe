@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.ORIGIN,
+    origin: "*",
   })
 );
+
 
 //routes
 app.use("/", require("./routes/index"));
