@@ -13,7 +13,10 @@ router.post("/submit-form1", async (req, res) => {
     const formData = req.body;
     const form1Data = new Form1(formData);
     await form1Data.save();
-    res.status(201).send("Form 1 data saved successfully");
+    res.status(201).send({
+      message: "Form 2 data saved successfully",
+      id: form1Data._id,
+    });
   } catch (error) {
     res.status(500).send("Error saving Form 1 data");
   }
@@ -24,7 +27,10 @@ router.post("/submit-form2", async (req, res) => {
     const formData = req.body;
     const form2Data = new Form2(formData);
     await form2Data.save();
-    res.status(201).send("Form 2 data saved successfully");
+    res.status(201).send({
+      message: "Form 2 data saved successfully",
+      id: form2Data._id,
+    });
   } catch (error) {
     res.status(500).send("Error saving Form 2 data");
   }
@@ -79,5 +85,24 @@ router.get("/fetch-pdf/:id", async (req, res) => {
     res.status(500).send("Error fetching PDF");
   }
 });
+
+router.get("/forms-data/:formName", async (req, res) => {
+  const { formName } = req.params;
+  try {
+    let formData;
+    if (formName === "form1") {
+      formData = await Form1.find();
+    } else if (formName === "form2") {
+      formData = await Form2.find();
+    } else {
+      return res.status(400).send("Invalid form name");
+    }
+    res.status(200).json(formData);
+  } catch (error) {
+    console.error("Error fetching forms:", error);
+    res.status(500).send("Error fetching forms");
+  }
+});
+
 
 module.exports = router;
