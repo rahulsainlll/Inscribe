@@ -1,30 +1,22 @@
+require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
-const pdf = require("html-pdf");
-const cors = require("cors");
-
-const pdfTemplate = require("./documents");
-
 const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const port = process.env.PORT || 4000;
 
-const port = 3000;
-
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+// middleware
 app.use(bodyParser.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.ORIGIN,
+  })
+);
 
-app.post("/create-pdf", (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile("result.pdf", (err) => {
-    if (err) {
-      res.send(Promise.reject());
-    }
+//routes
+app.use("/", require("./routes/index"));
 
-    res.send(Promise.resolve());
-  });
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
-
-app.get("/fetch-pdf", (req, res) => {
-  res.sendFile(`${__dirname}/result.pdf`);
-});
-
-app.listen(port, () => console.log(`Listening on port ${port}`));

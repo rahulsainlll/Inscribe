@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { saveAs } from "file-saver";
 
 function Form1() {
   const [formData, setFormData] = useState({});
+  const [storedFormData, setStoredFormData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,17 +16,22 @@ function Form1() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setStoredFormData(formData); // Store form data
+  };
+
+  const handleDownloadPDF = () => {
+    // Generate PDF using stored form data
     axios
-      .post("http://localhost:3000/create-pdf", formData)
+      .post("http://localhost:3000/create-pdf", storedFormData)
       .then(() =>
         axios.get("http://localhost:3000/fetch-pdf", { responseType: "blob" })
       )
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-        saveAs(pdfBlob, "newPdf.pdf");
+        saveAs(pdfBlob, "newPdf.pdf"); // Download PDF
       })
       .catch((error) => {
-        console.error("Error submitting form:", error);
+        console.error("Error generating PDF:", error);
       });
   };
 
@@ -48,6 +55,15 @@ function Form1() {
         />
         <button type="submit">Submit</button>
       </form>
+      {storedFormData && (
+        <div>
+          <h3>Stored Form Data:</h3>
+          <p>Name: {storedFormData.name}</p>
+          <p>Receipt ID: {storedFormData.receiptId}</p>
+          {/* Render other form fields */}
+          <button onClick={handleDownloadPDF}>Download PDF</button>
+        </div>
+      )}
     </div>
   );
 }
