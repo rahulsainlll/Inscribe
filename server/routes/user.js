@@ -8,19 +8,22 @@ const { Form1, Form2 } = require("../model/formSchema");
 const pdfTemplate1 = require("../documents/form1Template");
 const pdfTemplate2 = require("../documents/form2Template");
 
+
 router.post("/submit-form1", async (req, res) => {
   try {
     const formData = req.body;
     const form1Data = new Form1(formData);
     await form1Data.save();
     res.status(201).send({
-      message: "Form 2 data saved successfully",
+      message: "Form 1 data saved successfully",
       id: form1Data._id,
     });
   } catch (error) {
+    console.error("Error saving Form 1 data:", error);
     res.status(500).send("Error saving Form 1 data");
   }
 });
+
 
 router.post("/submit-form2", async (req, res) => {
   try {
@@ -32,14 +35,17 @@ router.post("/submit-form2", async (req, res) => {
       id: form2Data._id,
     });
   } catch (error) {
+    console.error("Error saving Form 2 data:", error);
     res.status(500).send("Error saving Form 2 data");
   }
 });
 
+// Endpoint to create a PDF from a form's data
 router.post("/create-pdf/:id/:formNumber", async (req, res) => {
   const { id, formNumber } = req.params;
   let formData;
   let pdfTemplate;
+
   try {
     if (formNumber === "form1") {
       formData = await Form1.findById(id);
@@ -56,7 +62,6 @@ router.post("/create-pdf/:id/:formNumber", async (req, res) => {
     }
 
     const filePath = path.join(__dirname, "../pdfs", `result_${id}.pdf`);
-
     pdf.create(pdfTemplate(formData), {}).toFile(filePath, (err) => {
       if (err) {
         console.error("Error creating PDF:", err);
@@ -71,6 +76,7 @@ router.post("/create-pdf/:id/:formNumber", async (req, res) => {
   }
 });
 
+// Endpoint to fetch a generated PDF
 router.get("/fetch-pdf/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -86,6 +92,7 @@ router.get("/fetch-pdf/:id", async (req, res) => {
   }
 });
 
+// Endpoint to fetch all data from a specific form collection
 router.get("/forms-data/:formName", async (req, res) => {
   const { formName } = req.params;
   try {
@@ -103,6 +110,5 @@ router.get("/forms-data/:formName", async (req, res) => {
     res.status(500).send("Error fetching forms");
   }
 });
-
 
 module.exports = router;
