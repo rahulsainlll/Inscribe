@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 const FormDataList = ({ formName }) => {
   const [formData, setFormData] = useState([]);
@@ -51,7 +52,7 @@ const FormDataList = ({ formName }) => {
     <div>
       {Object.entries(groupedFormData).map(([date, data]) => (
         <div key={date}>
-          <h3>{date}</h3>
+          <h1 className="font-mono m-10 text-lg" >{date}</h1>
           {data.map((item) => (
             <div
               key={item._id}
@@ -62,9 +63,12 @@ const FormDataList = ({ formName }) => {
               }}
             >
               <span>{item.name}</span>
-              <button onClick={() => handleDownloadPDF(item._id)}>
+              <Button
+                className="font-mono"
+                onClick={() => handleDownloadPDF(item._id)}
+              >
                 Download PDF
-              </button>
+              </Button>
             </div>
           ))}
         </div>

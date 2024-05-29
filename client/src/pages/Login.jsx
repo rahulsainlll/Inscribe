@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 function Login() {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function Login() {
 
   return (
     <div>
+      <h1 className=" text-lg m-6 mt-20">For Admin</h1>
       <form onSubmit={loginUser} className="form-container">
         <label className="form-label">Email</label>
         <input
@@ -55,19 +57,23 @@ function Login() {
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />
 
-        <button
-          style={{ gridColumn: "span 2", marginBottom: "10px" }}
+        <Button
+          style={{
+            gridColumn: "span 2",
+            marginBottom: "10px",
+            marginTop: "10px",
+          }}
           type="submit"
         >
           Login
-        </button>
+        </Button>
 
-        <div style={{ gridColumn: "span 2" }}>
+        {/* <div style={{ gridColumn: "span 2" }}>
           Don't have an account?
           <Link className="links" to="/register">
             Sign up
           </Link>
-        </div>
+        </div> */}
       </form>
     </div>
   );
