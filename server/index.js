@@ -17,7 +17,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: process.env.ORIGIN,
+    origin: [process.env.ORIGIN, process.env.ORIGIN2],
   })
 );
 
