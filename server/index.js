@@ -1,9 +1,10 @@
+require("dotenv").config();
 const express = require("express");
-const dotenv = require("dotenv").config();
-const cors = require("cors");
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 5000;
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 // mongoose
 const mongoose = require("mongoose");
@@ -12,13 +13,23 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("Database not connected", err));
 
+//middlewares
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.ORIGIN,
+  })
+);
+
 // middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // routes
 app.use("/", require("./routes/authRoutes"));
+app.use("/user", require("./routes/formRoutes"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
