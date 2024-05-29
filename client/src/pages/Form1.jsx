@@ -68,7 +68,7 @@ const Form1 = () => {
       onSubmit={handleSubmit}
       className="text-left w-full max-w-2xl mx-auto p-4 sm:p-8"
     >
-      <h2 className="font-bold  text-sm lg:text-xl text-center m-10 font-mono">
+      <h2 className="font-bold  text-lg lg:text-xl text-center m-10 font-mono">
         Faculty/Co-Faculty Advisor: Application Form
       </h2>
 
