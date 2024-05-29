@@ -1,32 +1,24 @@
-require("dotenv").config();
 const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
+const dotenv = require("dotenv").config();
 const cors = require("cors");
-const port = process.env.PORT || 4000;
+const app = express();
+const port = 8000;
+const cookieParser = require("cookie-parser");
 
-// firbase 
-const admin = require("firebase-admin");
-const serviceAccount = require("./firebase-admin-key.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: "gs://inscribe-74de7.appspot.com",
-  databaseURL: "https://inscribe-74de7-default-rtdb.firebaseio.com",
-});
+// mongoose
+const mongoose = require("mongoose");
+mongoose
+  .connect(process.env.Mongo_URL)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log("Database not connected", err));
 
 // middleware
-app.use(bodyParser.json());
-app.use(
-  cors({
-    credentials: true,
-    origin: "*",
-  })
-);
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
-
-//routes
-app.use("/", require("./routes/index"));
+// routes
+app.use("/", require("./routes/authRoutes"));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

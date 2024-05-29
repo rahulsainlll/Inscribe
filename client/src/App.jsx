@@ -1,26 +1,31 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Form1 from "./forms/Form1";
-import Form2 from "./forms/Form2";
-// Import other form components
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import { UserContextProvider } from "../context/userContext";
+import Dashboard from "./pages/Dashboard";
+
+// Axios
+axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/form1" element={<Form1 />} />
-          <Route path="/form2" element={<Form2 />} />
-          {/* Add routes for other forms */}
-        </Routes>
-      </div>
-    </Router>
+    <UserContextProvider>
+      <Navbar />
+      <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+      </Routes>
+    </UserContextProvider>
   );
 }
 
 export default App;
-
-
