@@ -11,7 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Form1 from "./pages/Form1";
 
 // Axios
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://inscribe-bxu7.onrender.com";
 axios.defaults.withCredentials = true;
 
 function App() {
