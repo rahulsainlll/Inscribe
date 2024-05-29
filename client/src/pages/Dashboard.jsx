@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+import FormDataList from "../components/FormDataList";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const { user } = useContext(UserContext);
 
   return (
     <div>
-      {/* <h1>Dashboard</h1> */}
-      {!!user && <h1>Hey 👋 {user.name}</h1>}
+      {/* {!!user && <p>Hey 👋 {user.name}</p>} */}
+      <FormDataList formName="form1" />
     </div>
   );
-}
+};
+
+export default Dashboard;

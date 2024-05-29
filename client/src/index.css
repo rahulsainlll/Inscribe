@@ -73,7 +73,7 @@ button:focus-visible {
 }
 
 nav {
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   height: 100px;
   display: flex;
   justify-content: space-between;
