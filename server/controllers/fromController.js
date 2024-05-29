@@ -7,11 +7,13 @@ const submitForm1 = async (req, res) => {
   try {
     const newUser = new formModel1(req.body);
     await newUser.save();
+    console.log("User data saved successfully:", newUser);
     res.send({
       message: "User data saved successfully",
       ID: newUser._id,
     });
   } catch (error) {
+    console.error("Error details:", error); 
     res.status(500).send("Error saving user data: " + error.message);
   }
 };

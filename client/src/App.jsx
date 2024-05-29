@@ -8,6 +8,7 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import { UserContextProvider } from "../context/userContext";
 import Dashboard from "./pages/Dashboard";
+import Form1 from "./pages/Form1";
 
 // Axios
 axios.defaults.baseURL = "http://localhost:8000";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/form1" element={<Form1 />}></Route>
       </Routes>
     </UserContextProvider>
   );
