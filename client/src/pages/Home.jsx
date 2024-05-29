@@ -20,10 +20,10 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[700px]">
-      <h1 className="text-3xl lg:text-5xl font-bold mb-4">
+      <h1 className="text-2xl lg:text-5xl font-bold mb-4">
         Simplify Your Applications
       </h1>
-      <p className="text-lg  text-gray-700 mb-6 text-center">
+      <p className="text-sm  text-gray-700 mb-6 text-center">
         Fill out forms quickly and efficiently. A seamless process designed for
         your convenience.
       </p>
