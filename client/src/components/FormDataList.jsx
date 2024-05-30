@@ -17,11 +17,13 @@ const FormDataList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(`/user/data/${selectedForm}`);
-        setFormData(response.data);
-      } catch (error) {
-        console.error("Error fetching form data:", error);
+      if (selectedForm) {
+        try {
+          const response = await axios.get(`/user/data/${selectedForm}`);
+          setFormData(response.data);
+        } catch (error) {
+          console.error("Error fetching form data:", error);
+        }
       }
     };
 
@@ -43,7 +45,7 @@ const FormDataList = () => {
   const handleDownloadPDF = async (id) => {
     try {
       const response = await axios.get(
-        `/user/generate-pdf-form1/${id}/${selectedForm}`,
+        `/user/generate-pdf-${selectedForm}/${id}/${selectedForm}`,
         {
           responseType: "blob",
         }
@@ -51,7 +53,12 @@ const FormDataList = () => {
 
       const pdfBlob = new Blob([response.data], { type: "application/pdf" });
       const pdfUrl = URL.createObjectURL(pdfBlob);
-      window.open(pdfUrl);
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.setAttribute("download", `${id}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error) {
       console.error("Error downloading PDF:", error);
     }
