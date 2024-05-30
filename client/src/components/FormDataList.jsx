@@ -33,9 +33,12 @@ const FormDataList = ({ formName }) => {
 
   const handleDownloadPDF = async (id) => {
     try {
-      const response = await axios.get(`/user/generate-pdf/${id}/${formName}`, {
-        responseType: "blob", // Ensure response is treated as a binary file
-      });
+      const response = await axios.get(
+        `/user/generate-pdf-form1/${id}/${formName}`,
+        {
+          responseType: "blob", // Ensure response is treated as a binary file
+        }
+      );
 
       // Create a blob URL for the PDF and open it in a new tab
       const pdfBlob = new Blob([response.data], { type: "application/pdf" });

@@ -1,5 +1,5 @@
-import React from "react";
-import {  useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -13,9 +13,14 @@ import {
 
 function Home() {
   const navigate = useNavigate();
+  const [selectedForm, setSelectedForm] = useState("");
 
   const handleGetStarted = () => {
-    navigate("/form1");
+    if (selectedForm) {
+      navigate(`/${selectedForm}`);
+    } else {
+      alert("Please select a form to proceed");
+    }
   };
 
   return (
@@ -23,7 +28,7 @@ function Home() {
       <h1 className="text-2xl lg:text-5xl font-bold mb-4">
         Simplify Your Applications
       </h1>
-      <p className="text-sm  text-gray-700 mb-6 text-center">
+      <p className="text-sm text-gray-700 mb-6 text-center">
         Fill out forms quickly and efficiently. A seamless process designed for
         your convenience.
       </p>
@@ -31,8 +36,7 @@ function Home() {
         <Button onClick={handleGetStarted} className="mr-2">
           Get started
         </Button>
-        {/* Integrate SelectDemo component below */}
-        <Select>
+        <Select onValueChange={(value) => setSelectedForm(value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a form" />
           </SelectTrigger>
@@ -40,7 +44,7 @@ function Home() {
             <SelectGroup>
               <SelectLabel>Forms</SelectLabel>
               <SelectItem value="form1">Faculty/Co-Faculty Advisor</SelectItem>
-              <SelectItem value="form2">Form 2</SelectItem>
+              <SelectItem value="form2">SECRETARY/JOINT SECRETARY</SelectItem>
               {/* Add more SelectItems for other forms */}
             </SelectGroup>
           </SelectContent>

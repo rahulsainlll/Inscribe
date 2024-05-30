@@ -1,7 +1,7 @@
 const { PDFDocument } = require("pdf-lib");
 const fs = require("fs");
 const path = require("path");
-const { formModel1 } = require("../models/form");
+const { formModel1, formModel2 } = require("../models/form");
 
 const submitForm1 = async (req, res) => {
   try {
@@ -89,6 +89,80 @@ const generatePdf = async (req, res) => {
   }
 };
 
+const generatePdf2 = async (req, res) => {
+  try {
+    const user = await formModel2.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const pdfPath = path.resolve(
+      __dirname,
+      `../templates/${req.params.formName}.pdf`
+    );
+    const existingPdfBytes = fs.readFileSync(pdfPath);
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const form = pdfDoc.getForm();
+
+    // Set form fields
+    form.getTextField("name").setText(user.name);
+    form.getTextField("date").setText(user.date.toISOString().split("T")[0]);
+
+    // Set checkboxes based on boolean values
+    const booleanFields = [
+      "club",
+      "community",
+      "society",
+      "groups",
+      "a",
+      "b",
+      "c",
+      "d",
+      "specific",
+      "challenge",
+      "outreach",
+      "incubation",
+      "secretary",
+      "jointsecretary",
+    ];
+    booleanFields.forEach((field) => {
+      if (user[field]) form.getCheckBox(field).check();
+    });
+
+    form.getTextField("details").setText(user.details);
+    form.getTextField("eid").setText(user.eid);
+    form.getTextField("id").setText(user.id);
+    form.getTextField("year").setText(user.year.toString());
+    form.getTextField("number").setText(user.number);
+    form.getTextField("curricular").setText(user.curricular.toString());
+    form.getTextField("program").setText(user.program);
+    form.getTextField("specialization").setText(user.specialization);
+    form.getTextField("achievements").setText(user.achievements);
+    form.getTextField("club2").setText(user.club2);
+    form.getTextField("event").setText(user.event);
+    form.getTextField("name2").setText(user.name2);
+    form.getTextField("designation").setText(user.designation);
+    form.getTextField("signature").setText(user.signature);
+    form.getTextField("nomination").setText(user.nomination);
+    form.getTextField("by").setText(user.by);
+    form.getTextField("form").setText(user.form);
+
+    const pdfBytes = await pdfDoc.save();
+
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": `attachment; filename=output_${user._id}.pdf`,
+      "Content-Length": pdfBytes.length,
+    });
+
+    res.send(Buffer.from(pdfBytes));
+  } catch (error) {
+    res.status(500).send("Error generating PDF: " + error.message);
+  }
+};
+
+
 const formData =  async (req, res) => {
   const { formName } = req.params;
   try {
@@ -107,4 +181,4 @@ const formData =  async (req, res) => {
   }
 };
 
-module.exports = { submitForm1,formData, generatePdf };
+module.exports = { submitForm1,formData, generatePdf , generatePdf2 };

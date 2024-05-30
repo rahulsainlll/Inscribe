@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { UserContextProvider } from "../context/userContext";
 import Dashboard from "./pages/Dashboard";
 import Form1 from "./pages/Form1";
+import Form2 from "./pages/Form2";
 
 // Axios
 axios.defaults.baseURL = "https://inscribe-bxu7.onrender.com";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/form1" element={<Form1 />}></Route>
+        <Route path="/form2" element={<Form2 />}></Route>
       </Routes>
     </UserContextProvider>
   );
