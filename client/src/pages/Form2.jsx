@@ -89,6 +89,8 @@ const Form2 = () => {
         document [List of Club@CU Document ]
       </p>
 
+      <hr className="mb-10"></hr>
+
       <FormInput
         label="Proposed Entity Name:"
         type="text"

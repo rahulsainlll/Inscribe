@@ -8,39 +8,26 @@ import { Button } from "@/components/ui/button";
 
 const Form3 = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    club: false,
-    community: false,
-    society: false,
-    groups: false,
-    a: false,
-    b: false,
-    c: false,
-    d: false,
-    specific: false,
-    challenge: false,
-    outreach: false,
-    incubation: false,
     details: "",
-    secretary: false,
-    jointsecretary: false,
+    chiefadvisor: false,
+    advisoryboard: false,
     eid: "",
-    id: "",
-    year: "",
     number: "",
+    email: "",
+    designation: "",
     curricular: "",
-    program: "",
+    department: "",
     specialization: "",
     achievements: "",
-    club2: "",
+    club: "",
     event: "",
-    name2: "",
-    designation: "",
+    novelty: "",
+    name: "",
+    dept: "",
     signature: "",
     nomination: "",
     by: "",
-    form: "form2",
+    form: "form3",
   });
 
   const navigate = useNavigate();
@@ -56,7 +43,7 @@ const Form3 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/user/submit-form2", formData);
+      const response = await axios.post("/user/submit-form3", formData);
       navigate(`/`);
       toast.success(response.data.message);
     } catch (error) {
@@ -71,170 +58,55 @@ const Form3 = () => {
       className="text-left w-full max-w-2xl mx-auto p-4 sm:p-8"
     >
       <h2 className="font-bold  text-lg lg:text-xl text-center m-10 font-mono">
-        SECRETARY/JOINT SECRETARY: APPLICATION FORM
+        ADVISORY BOARD: CHIEF ADVISOR/MEMBER OF ADVISORY BOARD
       </h2>
 
       <p className="font-bold text-lg mb-4">General Points:</p>
       <p className="mb-4 text-cyan-">
         1. Eligibility:
         <br />
-        a) Secretary: Final and Pre Final Year UG/PG students
+        a) Chief Advisor: Minimum of 2 year experience in Chandigarh University,
+        Only Professor. [Ph.D Required].
         <br />
-        b) Joint Secretary: Pre Final and 2nd Year UG/PG students and 1st Year
-        PG students.
+        b) Member of Advisory Board: Minimum of 1 year experience in CU,
+        Associate Professor [Ph.D Required].
       </p>
       <p className="mb-4">
         2. Required Documents: Updated Resume, Achievement proofs,
-        Coordinator-ship proofs, etc. Club may be picked up from the attached
-        document [List of Club@CU Document ]
+        Coordinator-ship proofs, etc.
+      </p>
+      <p className="mb-4">
+        3. Passion,Prior Related Experience and Domain Expertise.
       </p>
 
-      <FormInput
-        label="Proposed Entity Name:"
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Proposed Date:"
-        type="date"
-        name="date"
-        value={formData.date}
-        onChange={handleChange}
-        required
-      />
-
-      <div>
-        <label className="mb-2">Type of Entity:</label>
-        <div className="flex flex-wrap space-x-4 mb-2 mt-2">
-          <FormCheckbox
-            label="Club"
-            name="club"
-            checked={formData.club}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Community"
-            name="community"
-            checked={formData.community}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Society"
-            name="society"
-            checked={formData.society}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Groups"
-            name="groups"
-            checked={formData.groups}
-            onChange={handleChange}
-            required
-          />
-        </div>
-      </div>
-
-      <div>
-        <label>Category of Entity [From club List document]:</label>
-        <div className="flex flex-wrap space-x-4 mb-2 mt-2">
-          <FormCheckbox
-            label="A"
-            name="a"
-            checked={formData.a}
-            onChange={handleChange}
-          />
-          <FormCheckbox
-            label="B"
-            name="b"
-            checked={formData.b}
-            onChange={handleChange}
-          />
-          <FormCheckbox
-            label="C"
-            name="c"
-            checked={formData.c}
-            onChange={handleChange}
-          />
-          <FormCheckbox
-            label="D"
-            name="d"
-            checked={formData.d}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="from-accent-foreground mb-2 mt-2 block">
-          Nature of Entity:
-        </label>
-        <div className="flex flex-wrap space-x-4 mb-2 mt-2">
-          <FormCheckbox
-            label="Domain Specific (Skill Based)"
-            name="specific"
-            checked={formData.specific}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Hackathon and Challenge"
-            name="challenge"
-            checked={formData.challenge}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Social Value and Outreach"
-            name="outreach"
-            checked={formData.outreach}
-            onChange={handleChange}
-            required
-          />
-          <FormCheckbox
-            label="Invention and Incubation"
-            name="incubation"
-            checked={formData.incubation}
-            onChange={handleChange}
-            required
-          />
-        </div>
-      </div>
+      <hr className="mb-10"></hr>
 
       <FormInput
-        label="Secretary / Joint Secretary Details:"
+        label="Advisor Details:"
         type="text"
         name="details"
         value={formData.details}
         onChange={handleChange}
         required
       />
+      <label className="mb-2">Position Applied For:</label>
+      <FormCheckbox
+        label="Chief Advisor"
+        name="chiefadvisor"
+        checked={formData.chiefadvisor}
+        onChange={handleChange}
+      />
 
-      <div>
-        <label>Position Applied For:</label>
-        <div className="flex flex-wrap space-x-4 mb-2 mt-2">
-          <FormCheckbox
-            label="Secretary"
-            name="secretary"
-            checked={formData.secretary}
-            onChange={handleChange}
-          />
-          <FormCheckbox
-            label="Joint Secretary"
-            name="jointsecretary"
-            checked={formData.jointsecretary}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
+      <FormCheckbox
+        className="mt-4"
+        label="Advisory Board Member"
+        name="advisoryboard"
+        checked={formData.advisoryboard}
+        onChange={handleChange}
+      />
 
       <FormInput
-        label="Student Name /EID:"
+        label="Faculty Name /EID:"
         type="text"
         name="eid"
         value={formData.eid}
@@ -250,90 +122,10 @@ const Form3 = () => {
         required
       />
       <FormInput
-        label="Email ID:"
-        type="text"
-        name="id"
-        value={formData.id}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Current Year:"
-        type="number"
-        name="year"
-        value={formData.year}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Prior Experience in Co-Curricular Domain(Years):"
-        type="number"
-        name="curricular"
-        value={formData.curricular}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Department/Program:"
-        type="text"
-        name="program"
-        value={formData.program}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Department/Specialization:"
-        type="text"
-        name="specialization"
-        value={formData.specialization}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Previous Related Achievements Certifications/ Recognitions/ Patents/ Research papers [SCI,SCOPUS]/Leadership]:"
-        type="text"
-        name="achievements"
-        value={formData.achievements}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Proposed Vision for Club:"
-        type="text"
-        name="club2"
-        value={formData.club2}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Proposed Flagship Event:"
-        type="text"
-        name="event"
-        value={formData.event}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Nomination:"
-        type="text"
-        name="nomination"
-        value={formData.nomination}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Nomination by:"
-        type="text"
-        name="by"
-        value={formData.by}
-        onChange={handleChange}
-        required
-      />
-      <FormInput
-        label="Name:"
-        type="text"
-        name="name2"
-        value={formData.name2}
+        label="E-Mail ID:"
+        type="email"
+        name="email"
+        value={formData.email}
         onChange={handleChange}
         required
       />
@@ -345,6 +137,98 @@ const Form3 = () => {
         onChange={handleChange}
         required
       />
+      <FormInput
+        label="Prior Experience in Co-Curricular Domain(Years)"
+        type="number"
+        name="curricular"
+        value={formData.curricular}
+        onChange={handleChange}
+        required
+      />
+
+      <FormInput
+        label="Department:"
+        type="text"
+        name="department"
+        value={formData.department}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Specialization:"
+        type="text"
+        name="specialization"
+        value={formData.specialization}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Previous Related Achievements
+Certifications/ Recognitions/ Patents/ Research papers [SCI,SCOPUS]/Leadership]:"
+        type="text"
+        name="achievements"
+        value={formData.achievements}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Proposed Vision for Club"
+        type="text"
+        name="club"
+        value={formData.club}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Proposed Flagship Event"
+        type="text"
+        name="event"
+        value={formData.event}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Novelty:"
+        type="text"
+        name="novelty"
+        value={formData.novelty}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Name:"
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Dept:"
+        type="text"
+        name="dept"
+        value={formData.dept}
+        onChange={handleChange}
+        required
+      />
+
+      <FormInput
+        label="Nomination:"
+        type="text"
+        name="nomination"
+        value={formData.nomination}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Nominated by:"
+        type="text"
+        name="by"
+        value={formData.by}
+        onChange={handleChange}
+        required
+      />
+
       <FormInput
         label="Signature:"
         type="text"

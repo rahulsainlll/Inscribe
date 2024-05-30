@@ -71,8 +71,29 @@ const Form1 = () => {
       className="text-left w-full max-w-2xl mx-auto p-4 sm:p-8"
     >
       <h2 className="font-bold  text-lg lg:text-xl text-center m-10 font-mono">
-        Faculty/Co-Faculty Advisor: Application Form
+        FACULTY/CO-FACULTY ADVISOR: APPLICATION FORM
       </h2>
+
+      <p className="font-bold text-lg mb-4">General Points:</p>
+      <p className="mb-4 text-cyan-">
+        1. Eligibility:
+        <br />
+        a) Faculty Advisor: Minimum of 1-year experience in Chandigarh
+        University [Ph.D not required].
+        <br />
+        b) Faculty Co-Advisor: Any Fresher who has recently joined Chandigarh
+        University [Ph.D not required].
+      </p>
+      <p className="mb-4">
+        2. Required Documents: Updated Resume, Achievement proofs,
+        Coordinator-ship proofs, etc.
+      </p>
+      <p className="mb-4">
+        3. Club may be picked up from the attached document [List of Club@CU
+        Document]
+      </p>
+
+      <hr className="mb-10"></hr>
 
       <FormInput
         label="Proposed Entity Name:"
