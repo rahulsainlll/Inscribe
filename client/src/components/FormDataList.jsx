@@ -11,9 +11,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const FormDataList = ({ formName }) => {
+const FormDataList = () => {
   const [formData, setFormData] = useState([]);
-  const [selectedForm, setSelectedForm] = useState(formName);
+  const [selectedForm, setSelectedForm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ const FormDataList = ({ formName }) => {
     };
 
     fetchData();
-  }, []);
+  }, [selectedForm]);
 
   const groupFormDataByDate = () => {
     const groupedData = {};
