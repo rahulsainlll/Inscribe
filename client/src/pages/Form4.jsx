@@ -385,8 +385,8 @@ const Form4 = () => {
         <FormInput
           label="Mobile Number:"
           type="text"
-          name="psjs2number"
-          value={formData.psjs2number}
+          name="psjs1number"
+          value={formData.psjs1number}
           onChange={handleChange}
           required
         />
@@ -394,16 +394,16 @@ const Form4 = () => {
         <FormInput
           label="Proposed Student Joint Secretary 2 Name/UID"
           type="text"
-          name="pfcoa2name"
-          value={formData.pfcoa2name}
+          name="psjs2name"
+          value={formData.psjs2name}
           onChange={handleChange}
         />
 
         <FormInput
           label="Mobile Number:"
           type="text"
-          name="pfcoa2number"
-          value={formData.pfcoa2number}
+          name="psjs2number"
+          value={formData.psjs2number}
           onChange={handleChange}
         />
 
