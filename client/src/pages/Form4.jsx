@@ -11,7 +11,7 @@ import img from "../assets/form4.png";
 const Form4 = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    clubname: "",
+    name: "",
     date: "",
     club: false,
     community: false,
@@ -121,8 +121,8 @@ const Form4 = () => {
         <FormInput
           label="Proposed Club Name:"
           type="text"
-          name="clubname"
-          value={formData.clubname}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
           required
         />

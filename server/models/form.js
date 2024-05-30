@@ -115,7 +115,7 @@ const form3Schema = new mongoose.Schema({
 });
 
 const form4Schema = new mongoose.Schema({
-  clubname: { type: String, required: true },
+  name: { type: String, required: true },
   date: { type: Date, required: true },
 
   club: { type: Boolean },
@@ -140,39 +140,38 @@ const form4Schema = new mongoose.Schema({
 
   facultyadvisor: { type: String, required: true },
 
-  pfa1name: { type: String, required: true },
-  pfa1number: { type: String, required: true },
-  pfa2name: { type: String, required: true },
-  pfa2number: { type: String, required: true },
+  pfa1name: { type: String },
+  pfa1number: { type: String },
+  pfa2name: { type: String },
+  pfa2number: { type: String },
 
-  pfcoa1name: { type: String, required: true },
-  pfcoa1number: { type: String, required: true },
-  pfcoa2name: { type: String, required: true },
-  pfcoa2number: { type: String, required: true },
+  pfcoa1name: { type: String },
+  pfcoa1number: { type: String },
+  pfcoa2name: { type: String },
+  pfcoa2number: { type: String },
 
   mentorname: { type: String, required: true },
   mentornumber: { type: String, required: true },
 
   studentsecretary: { type: String, required: true },
 
-  pss1name: { type: String, required: true },
-  pss1number: { type: String, required: true },
-  pss2name: { type: String, required: true },
-  pss2number: { type: String, required: true },
-  psjs1name: { type: String, required: true },
-  psjs1number: { type: String, required: true },
-  psjs2name : { type: String, required: true },
-  psjs2number : { type: String, required: true },
+  pss1name: { type: String },
+  pss1number: { type: String },
+  pss2name: { type: String },
+  pss2number: { type: String },
+  psjs1name: { type: String },
+  psjs1number: { type: String },
+  psjs2name: { type: String },
+  psjs2number: { type: String },
 
-  recommendation: { type: String, required: true },
-  council: { type: String, required: true },
-  recnotrec: { type: String, required: true },
-  signature: { type: String, required: true },
+  recommendation: { type: String },
+  council: { type: String },
+  recnotrec: { type: String },
+  signature: { type: String },
 
+  signature: { type: String },
 
-  signature: { type: String, required: true },
-
-  form: { type: String, required: true },
+  form: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 

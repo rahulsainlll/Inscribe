@@ -279,7 +279,7 @@ const generatePdf4 = async (req, res) => {
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const form = pdfDoc.getForm();
 
-    form.getTextField("clubname").setText(user.clubname);
+    form.getTextField("name").setText(user.name);
     form.getTextField("date").setText(user.date.toISOString().split("T")[0]);
     form.getCheckBox("club").check(user.club);
     form.getCheckBox("community").check(user.community);
