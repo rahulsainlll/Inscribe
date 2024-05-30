@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FaMedal } from "react-icons/fa";
 
 function Home() {
   const navigate = useNavigate();
@@ -25,6 +26,15 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[700px]">
+      <a
+        href="https://cucet.cuchd.in/?type=gsn-cucet&gad_source=1&gclid=CjwKCAjwx-CyBhAqEiwAeOcTddvy-zFRiugxVZ_jUHpvWJVsdv1KOe2DfGsgkUeapRhqD4Cd3M-BNxoCJfAQAvD_BwE"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="badge-container bg-blue-200 text-blue-800 rounded-full p-2 mb-4 flex items-center"
+      >
+        <FaMedal className="badge-icon mr-2" />
+        <span className="badge-text text-sm"> #1 Chandigarh University </span>
+      </a>
       <h1 className="text-2xl lg:text-5xl font-bold mb-4">
         Simplify Your Applications
       </h1>
@@ -36,8 +46,11 @@ function Home() {
         <Button onClick={handleGetStarted} className="mr-2">
           Get started
         </Button>
-        <Select onValueChange={(value) => setSelectedForm(value)}>
-          <SelectTrigger className="w-[180px]">
+        <Select
+          onValueChange={(value) => setSelectedForm(value)}
+          className="w-[180px]"
+        >
+          <SelectTrigger>
             <SelectValue placeholder="Select a form" />
           </SelectTrigger>
           <SelectContent>
@@ -51,7 +64,6 @@ function Home() {
               <SelectItem value="form4">
                 PROPOSAL FORM: FORMATION OF ENTITY
               </SelectItem>
-              {/* Add more SelectItems for other forms */}
             </SelectGroup>
           </SelectContent>
         </Select>

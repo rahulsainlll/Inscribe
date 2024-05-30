@@ -23,18 +23,18 @@ function Navbar() {
   return (
     <nav className="flex justify-between items-center px-4 py-2 ">
       <div>
-        <Link className="mr-4" to="/">
+        <Link className="mr-4 hover:underline" to="/">
           Inscribe
         </Link>
       </div>
       <div>
         {!user ? (
-          <Link className="mr-4" to="/login">
+          <Link className="mr-4 hover:underline" to="/login">
             Login
           </Link>
         ) : (
           <>
-            <Link className="mr-4" to="/dashboard">
+            <Link className="mr-4 hover:underline" to="/dashboard">
               Dashboard
             </Link>
             <button onClick={handleLogout} className="mr-4">
