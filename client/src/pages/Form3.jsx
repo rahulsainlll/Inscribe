@@ -6,7 +6,7 @@ import FormInput from "../components/FormInput";
 import FormCheckbox from "../components/FormCheckbox";
 import { Button } from "@/components/ui/button";
 import Modal from "react-modal";
-import img from "../assets/form3.jpeg";
+import img from "../assets/form3.png";
 
 const Form3 = () => {
    const [modalIsOpen, setModalIsOpen] = useState(false);
