@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const FormDataList = ({ formName }) => {
   const [formData, setFormData] = useState([]);
+  const [selectedForm, setSelectedForm] = useState(formName);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/user/data/${formName}`);
+        const response = await axios.get(`/user/data/${selectedForm}`);
         setFormData(response.data);
       } catch (error) {
         console.error("Error fetching form data:", error);
@@ -16,8 +26,7 @@ const FormDataList = ({ formName }) => {
     };
 
     fetchData();
-  }, [formName]);
-
+  }, [selectedForm]);
 
   const groupFormDataByDate = () => {
     const groupedData = {};
@@ -34,7 +43,7 @@ const FormDataList = ({ formName }) => {
   const handleDownloadPDF = async (id) => {
     try {
       const response = await axios.get(
-        `/user/generate-pdf-form1/${id}/${formName}`,
+        `/user/generate-pdf-form1/${id}/${selectedForm}`,
         {
           responseType: "blob", // Ensure response is treated as a binary file
         }
@@ -53,9 +62,29 @@ const FormDataList = ({ formName }) => {
 
   return (
     <div>
+      <div className="flex items-center mb-4">
+        <Select onValueChange={(value) => setSelectedForm(value)}>
+          <SelectTrigger className="w-[180px] mt-6">
+            <SelectValue placeholder="Select a form" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Forms</SelectLabel>
+              <SelectItem value="form1">Faculty/Co-Faculty Advisor</SelectItem>
+              <SelectItem value="form2">SECRETARY/JOINT SECRETARY</SelectItem>
+              <SelectItem value="form3">
+                ADVISORY BOARD: CHIEF ADVISOR/MEMBER OF ADVISORY BOARD
+              </SelectItem>
+              <SelectItem value="form4">
+                PROPOSAL FORM: FORMATION OF ENTITY
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
       {Object.entries(groupedFormData).map(([date, data]) => (
         <div key={date}>
-          <h1 className="font-mono m-10 text-lg" >{date}</h1>
+          <h1 className="font-mono m-10 text-lg">{date}</h1>
           {data.map((item) => (
             <div
               key={item._id}
