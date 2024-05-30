@@ -18,7 +18,7 @@ const FormDataList = ({ formName }) => {
     fetchData();
   }, [formName]);
 
-  // Function to group form data by createdAt date
+
   const groupFormDataByDate = () => {
     const groupedData = {};
     formData.forEach((data) => {

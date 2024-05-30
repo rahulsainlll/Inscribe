@@ -9,9 +9,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
   const [selectedForm, setSelectedForm] = useState("form1");
+
+  const handleUpdateForm = () => {
+    // Automatically fetch form data for the selected form
+    setSelectedForm(selectedForm);
+  };
 
   return (
     <div>
@@ -34,6 +40,9 @@ const Dashboard = () => {
             </SelectGroup>
           </SelectContent>
         </Select>
+        <Button className="ml-4" onClick={handleUpdateForm}>
+          Fetch Form Data
+        </Button>
       </div>
       <FormDataList formName={selectedForm} />
     </div>
