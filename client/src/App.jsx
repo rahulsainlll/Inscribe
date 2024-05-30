@@ -10,6 +10,8 @@ import { UserContextProvider } from "../context/userContext";
 import Dashboard from "./pages/Dashboard";
 import Form1 from "./pages/Form1";
 import Form2 from "./pages/Form2";
+import Form3 from "./pages/Form3";
+import Form4 from "./pages/Form4";
 
 // Axios
 axios.defaults.baseURL = "https://inscribe-bxu7.onrender.com";
@@ -27,6 +29,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/form1" element={<Form1 />}></Route>
         <Route path="/form2" element={<Form2 />}></Route>
+        <Route path="/form3" element={<Form3 />}></Route>
+        <Route path="/form4" element={<Form4 />}></Route>
       </Routes>
     </UserContextProvider>
   );
