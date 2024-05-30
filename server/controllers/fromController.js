@@ -53,6 +53,21 @@ const submitForm3 = async (req, res) => {
   }
 };
 
+const submitForm4 = async (req, res) => {
+  try {
+    const newUser = new formModel4(req.body);
+    await newUser.save();
+    console.log("User data saved successfully:", newUser);
+    res.send({
+      message: "User data saved successfully",
+      ID: newUser._id,
+    });
+  } catch (error) {
+    console.error("Error details:", error);
+    res.status(500).send("Error saving user data: " + error.message);
+  }
+};
+
 const generatePdf = async (req, res) => {
   try {
     const user = await formModel1.findById(req.params.id);
@@ -248,6 +263,77 @@ const generatePdf3 = async (req, res) => {
   }
 };
 
+const generatePdf4 = async (req, res) => {
+  try {
+    const user = await formModel4.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const pdfPath = path.resolve(
+      __dirname,
+      `../templates/${req.params.formName}.pdf`
+    );
+    const existingPdfBytes = fs.readFileSync(pdfPath);
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const form = pdfDoc.getForm();
+
+    form.getTextField("clubname").setText(user.clubname);
+    form.getTextField("date").setText(user.date.toISOString().split("T")[0]);
+    form.getCheckBox("club").check(user.club);
+    form.getCheckBox("community").check(user.community);
+    form.getCheckBox("dept").check(user.dept);
+    form.getCheckBox("groups").check(user.groups);
+    form.getCheckBox("a").check(user.a);
+    form.getCheckBox("b").check(user.b);
+    form.getCheckBox("c").check(user.c);
+    form.getCheckBox("d").check(user.d);
+    form.getCheckBox("skillbased").check(user.skillbased);
+    form.getCheckBox("hackathon").check(user.hackathon);
+    form.getCheckBox("incubation").check(user.incubation);
+    form.getCheckBox("outreach").check(user.outreach);
+    form.getTextField("namedept").setText(user.namedept);
+    form.getCheckBox("faculty").check(user.faculty);
+    form.getCheckBox("student").check(user.student);
+    form.getTextField("facultyadvisor").setText(user.facultyadvisor);
+    form.getTextField("pfa1name").setText(user.pfa1name);
+    form.getTextField("pfa1number").setText(user.pfa1number);
+    form.getTextField("pfa2name").setText(user.pfa2name);
+    form.getTextField("pfa2number").setText(user.pfa2number);
+    form.getTextField("pfcoa1name").setText(user.pfcoa1name);
+    form.getTextField("pfcoa1number").setText(user.pfcoa1number);
+    form.getTextField("pfcoa2name").setText(user.pfcoa2name);
+    form.getTextField("pfcoa2number").setText(user.pfcoa2number);
+    form.getTextField("mentorname").setText(user.mentorname);
+    form.getTextField("mentornumber").setText(user.mentornumber);
+    form.getTextField("studentsecretary").setText(user.studentsecretary);
+    form.getTextField("pss1name").setText(user.pss1name);
+    form.getTextField("pss1number").setText(user.pss1number);
+    form.getTextField("pss2name").setText(user.pss2name);
+    form.getTextField("pss2number").setText(user.pss2number);
+    form.getTextField("psjs1name").setText(user.psjs1name);
+    form.getTextField("psjs1number").setText(user.psjs1number);
+    form.getTextField("psjs2name").setText(user.psjs2name);
+    form.getTextField("psjs2number").setText(user.psjs2number);
+    form.getTextField("recommendation").setText(user.recommendation);
+    form.getTextField("council").setText(user.council);
+    form.getTextField("recnotrec").setText(user.recnotrec);
+    form.getTextField("signature").setText(user.signature);
+
+    const pdfBytes = await pdfDoc.save();
+
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": `attachment; filename=output_${user._id}.pdf`,
+      "Content-Length": pdfBytes.length,
+    });
+
+    res.send(Buffer.from(pdfBytes));
+  } catch (error) {
+    res.status(500).send("Error generating PDF: " + error.message);
+  }
+};
 
 const formData = async (req, res) => {
   const { formName } = req.params;
@@ -281,8 +367,10 @@ module.exports = {
   submitForm1,
   submitForm2,
   submitForm3,
+  submitForm4,
   formData,
   generatePdf,
   generatePdf2,
   generatePdf3,
+  generatePdf4,
 };

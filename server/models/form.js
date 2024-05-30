@@ -115,44 +115,62 @@ const form3Schema = new mongoose.Schema({
 });
 
 const form4Schema = new mongoose.Schema({
-  name: { type: String, required: true },
+  clubname: { type: String, required: true },
   date: { type: Date, required: true },
+
   club: { type: Boolean },
   community: { type: Boolean },
-  society: { type: Boolean },
+  dept: { type: Boolean },
   groups: { type: Boolean },
+
   a: { type: Boolean },
   b: { type: Boolean },
   c: { type: Boolean },
   d: { type: Boolean },
-  specific: { type: Boolean },
-  challenge: { type: Boolean },
-  outreach: { type: Boolean },
+
+  skillbased: { type: Boolean },
+  hackathon: { type: Boolean },
   incubation: { type: Boolean },
+  outreach: { type: Boolean },
 
-  details: { type: String, required: true },
+  namedept: { type: String, required: true },
 
-  secretary: { type: Boolean },
-  jointsecretary: { type: Boolean },
+  faculty: { type: Boolean },
+  student: { type: Boolean },
 
-  eid: { type: String, required: true },
-  id: { type: String, required: true },
-  year: { type: Number, required: true },
-  number: { type: String, required: true },
-  curricular: { type: Number, required: true },
-  program: { type: String, required: true },
-  specialization: { type: String, required: true },
-  achievements: { type: String, required: true },
+  facultyadvisor: { type: String, required: true },
 
-  club2: { type: String, required: true },
-  event: { type: String, required: true },
+  pfa1name: { type: String, required: true },
+  pfa1number: { type: String, required: true },
+  pfa2name: { type: String, required: true },
+  pfa2number: { type: String, required: true },
 
-  name2: { type: String, required: true },
-  designation: { type: String, required: true },
+  pfcoa1name: { type: String, required: true },
+  pfcoa1number: { type: String, required: true },
+  pfcoa2name: { type: String, required: true },
+  pfcoa2number: { type: String, required: true },
+
+  mentorname: { type: String, required: true },
+  mentornumber: { type: String, required: true },
+
+  studentsecretary: { type: String, required: true },
+
+  pss1name: { type: String, required: true },
+  pss1number: { type: String, required: true },
+  pss2name: { type: String, required: true },
+  pss2number: { type: String, required: true },
+  psjs1name: { type: String, required: true },
+  psjs1number: { type: String, required: true },
+  psjs2name : { type: String, required: true },
+  psjs2number : { type: String, required: true },
+
+  recommendation: { type: String, required: true },
+  council: { type: String, required: true },
+  recnotrec: { type: String, required: true },
   signature: { type: String, required: true },
 
-  nomination: { type: String, required: true },
-  by: { type: String, required: true },
+
+  signature: { type: String, required: true },
 
   form: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
