@@ -181,7 +181,6 @@ const generatePdf2 = async (req, res) => {
     form.getTextField("signature").setText(user.signature);
     form.getTextField("nomination").setText(user.nomination);
     form.getTextField("by").setText(user.by);
-    form.getTextField("form").setText(user.form);
 
     const pdfBytes = await pdfDoc.save();
 
@@ -233,7 +232,7 @@ const generatePdf3 = async (req, res) => {
     form.getTextField("signature").setText(user.signature);
     form.getTextField("nomination").setText(user.nomination);
     form.getTextField("by").setText(user.by);
-    form.getTextField("form").setText(user.form);
+ 
 
     const pdfBytes = await pdfDoc.save();
 
