@@ -88,7 +88,7 @@ const form3Schema = new mongoose.Schema({
   advisoryboard: { type: Boolean },
 
   eid: { type: String, required: true },
-  number: { type: Number, required: true },
+  number: { type: String, required: true },
   email: { type: String, required: true },
   designation: { type: String, required: true },
 
