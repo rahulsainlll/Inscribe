@@ -351,7 +351,7 @@ const Form4 = () => {
         <FormInput
           label="Mobile Number:"
           type="text"
-          name="pfa1number"
+          name="pss1number"
           value={formData.pss1number}
           onChange={handleChange}
           required
