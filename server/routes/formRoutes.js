@@ -17,7 +17,7 @@ const {
 router.post("/submit-form1", submitForm1);
 router.post("/submit-form2", submitForm2);
 router.post("/submit-form3", submitForm3);
-router.post("/submit-form3", submitForm4);
+router.post("/submit-form4", submitForm4);
 router.get("/generate-pdf-form1/:id/:formName", generatePdf);
 router.get("/generate-pdf-form2/:id/:formName", generatePdf2);
 router.get("/generate-pdf-form3/:id/:formName", generatePdf3);
