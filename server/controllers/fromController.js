@@ -18,6 +18,21 @@ const submitForm1 = async (req, res) => {
   }
 };
 
+const submitForm2 = async (req, res) => {
+  try {
+    const newUser = new formModel2(req.body);
+    await newUser.save();
+    console.log("User data saved successfully:", newUser);
+    res.send({
+      message: "User data saved successfully",
+      ID: newUser._id,
+    });
+  } catch (error) {
+    console.error("Error details:", error);
+    res.status(500).send("Error saving user data: " + error.message);
+  }
+};
+
 const generatePdf = async (req, res) => {
   try {
     const user = await formModel1.findById(req.params.id);
@@ -181,4 +196,10 @@ const formData =  async (req, res) => {
   }
 };
 
-module.exports = { submitForm1,formData, generatePdf , generatePdf2 };
+module.exports = {
+  submitForm1,
+  submitForm2,
+  formData,
+  generatePdf,
+  generatePdf2,
+};
