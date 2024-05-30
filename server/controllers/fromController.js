@@ -1,7 +1,12 @@
 const { PDFDocument } = require("pdf-lib");
 const fs = require("fs");
 const path = require("path");
-const { formModel1, formModel2 } = require("../models/form");
+const {
+  formModel1,
+  formModel2,
+  formModel3,
+  formModel4,
+} = require("../models/form");
 
 const submitForm1 = async (req, res) => {
   try {
@@ -178,16 +183,25 @@ const generatePdf2 = async (req, res) => {
 };
 
 
-const formData =  async (req, res) => {
+const formData = async (req, res) => {
   const { formName } = req.params;
   try {
     let formData;
-    if (formName === "form1") {
-      formData = await formModel1.find();
-    } else if (formName === "form2") {
-      formData = await formModel1.find();
-    } else {
-      return res.status(400).send("Invalid form name");
+    switch (formName) {
+      case "form1":
+        formData = await formModel1.find();
+        break;
+      case "form2":
+        formData = await formModel2.find();
+        break;
+      case "form3":
+        formData = await formModel3.find();
+        break;
+      case "form4":
+        formData = await formModel4.find();
+        break;
+      default:
+        return res.status(400).send("Invalid form name");
     }
     res.status(200).json(formData);
   } catch (error) {
@@ -195,6 +209,7 @@ const formData =  async (req, res) => {
     res.status(500).send("Error fetching forms");
   }
 };
+
 
 module.exports = {
   submitForm1,
