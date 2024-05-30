@@ -72,6 +72,8 @@ const generatePdf = async (req, res) => {
     form.getTextField("specialization").setText(user.specialization);
     form.getTextField("entity").setText(user.entity);
     form.getTextField("event").setText(user.event);
+    form.getTextField("nomination").setText(user.nomination);
+    form.getTextField("by").setText(user.by);
 
     const pdfBytes = await pdfDoc.save();
 

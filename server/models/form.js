@@ -31,6 +31,8 @@ const form1Schema = new mongoose.Schema({
   specialization: { type: String, required: true },
   entity: { type: String, required: true },
   event: { type: String, required: true },
+  nomination: { type: String, required: true },
+  by: { type: String, required: true },
   form: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });

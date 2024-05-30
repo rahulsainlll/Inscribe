@@ -38,6 +38,8 @@ const Form1 = () => {
     specialization: "",
     entity: "",
     event: "",
+    nomination: "",
+    by: "",
     form: "form1",
   });
 
@@ -299,13 +301,29 @@ const Form1 = () => {
       <FormInput
         label="Nomination:"
         type="text"
+        name="nomination"
+        value={formData.nomination}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Nomination by:"
+        type="text"
+        name="by"
+        value={formData.by}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
+        label="Name:"
+        type="text"
         name="name2"
         value={formData.name2}
         onChange={handleChange}
         required
       />
       <FormInput
-        label="Nominated By:"
+        label="Designation:"
         type="text"
         name="designation2"
         value={formData.designation2}
