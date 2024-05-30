@@ -9,41 +9,50 @@ import Modal from "react-modal";
 import img from "../assets/form4.png";
 
 const Form4 = () => {
-   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    clubname: "",
     date: "",
     club: false,
     community: false,
-    society: false,
+    dept: false,
     groups: false,
     a: false,
     b: false,
     c: false,
     d: false,
-    specific: false,
-    challenge: false,
-    outreach: false,
+    skillbased: false,
+    hackathon: false,
     incubation: false,
-    details: "",
-    secretary: false,
-    jointsecretary: false,
-    eid: "",
-    id: "",
-    year: "",
-    number: "",
-    curricular: "",
-    program: "",
-    specialization: "",
-    achievements: "",
-    club2: "",
-    event: "",
-    name2: "",
-    designation: "",
+    outreach: false,
+    namedept: "",
+    faculty: false,
+    student: false,
+    facultyadvisor: "",
+    pfa1name: "",
+    pfa1number: "",
+    pfa2name: "",
+    pfa2number: "",
+    pfcoa1name: "",
+    pfcoa1number: "",
+    pfcoa2name: "",
+    pfcoa2number: "",
+    mentorname: "",
+    mentornumber: "",
+    studentsecretary: "",
+    pss1name: "",
+    pss1number: "",
+    pss2name: "",
+    pss2number: "",
+    psjs1name: "",
+    psjs1number: "",
+    psjs2name: "",
+    psjs2number: "",
+    recommendation: "",
+    council: "",
+    recnotrec: "",
     signature: "",
-    nomination: "",
-    by: "",
-    form: "form2",
+    form: "form4",
   });
 
   const navigate = useNavigate();
@@ -59,7 +68,7 @@ const Form4 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/user/submit-form2", formData);
+      const response = await axios.post("/user/submit-form4", formData);
       navigate(`/`);
       toast.success(response.data.message);
     } catch (error) {
@@ -91,34 +100,29 @@ const Form4 = () => {
           />
         </div>
       </Modal>
+
       <form
         onSubmit={handleSubmit}
         className="text-left w-full max-w-2xl mx-auto p-4 sm:p-8"
       >
-        <h2 className="font-bold  text-lg lg:text-xl text-center m-10 font-mono">
-          SECRETARY/JOINT SECRETARY: APPLICATION FORM
+        <h2 className="font-bold text-lg lg:text-xl text-center m-10 font-mono">
+          PROPOSAL FORM: FORMATION OF ENTITY
         </h2>
 
         <p className="font-bold text-lg mb-4">General Points:</p>
         <p className="mb-4 text-cyan-">
-          1. Eligibility:
+          1. Recommendation from the Member of Advisory Board is Mandatory.
           <br />
-          a) Secretary: Final and Pre Final Year UG/PG students
-          <br />
-          b) Joint Secretary: Pre Final and 2nd Year UG/PG students and 1st Year
-          PG students.
-        </p>
-        <p className="mb-4">
-          2. Required Documents: Updated Resume, Achievement proofs,
-          Coordinator-ship proofs, etc. Club may be picked up from the attached
-          document [List of Club@CU Document ]
+          2. Required Documents: Please refer to the attached Appendix-1.
         </p>
 
+        <hr className="mb-10"></hr>
+
         <FormInput
-          label="Proposed Entity Name:"
+          label="Proposed Club Name:"
           type="text"
-          name="name"
-          value={formData.name}
+          name="clubname"
+          value={formData.clubname}
           onChange={handleChange}
           required
         />
@@ -149,9 +153,9 @@ const Form4 = () => {
               required
             />
             <FormCheckbox
-              label="Society"
-              name="society"
-              checked={formData.society}
+              label="Dept.Society"
+              name="dept"
+              checked={formData.dept}
               onChange={handleChange}
               required
             />
@@ -196,21 +200,39 @@ const Form4 = () => {
         </div>
 
         <div>
+          <label>Proposed By:</label>
+          <div className="flex flex-wrap space-x-4 mb-2 mt-2">
+            <FormCheckbox
+              label="Faculty"
+              name="faculty"
+              checked={formData.faculty}
+              onChange={handleChange}
+            />
+            <FormCheckbox
+              label="Student"
+              name="student"
+              checked={formData.student}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div>
           <label className="from-accent-foreground mb-2 mt-2 block">
             Nature of Entity:
           </label>
           <div className="flex flex-wrap space-x-4 mb-2 mt-2">
             <FormCheckbox
               label="Domain Specific (Skill Based)"
-              name="specific"
-              checked={formData.specific}
+              name="skillbased"
+              checked={formData.skillbased}
               onChange={handleChange}
               required
             />
             <FormCheckbox
               label="Hackathon and Challenge"
-              name="challenge"
-              checked={formData.challenge}
+              name="hackathon"
+              checked={formData.hackathon}
               onChange={handleChange}
               required
             />
@@ -232,144 +254,186 @@ const Form4 = () => {
         </div>
 
         <FormInput
-          label="Secretary / Joint Secretary Details:"
+          label="Faculty Advisor/ Faculty Co-Advisor Details:"
           type="text"
-          name="details"
-          value={formData.details}
+          name="facultyadvisor"
+          value={formData.facultyadvisor}
           onChange={handleChange}
           required
         />
-
-        <div>
-          <label>Position Applied For:</label>
-          <div className="flex flex-wrap space-x-4 mb-2 mt-2">
-            <FormCheckbox
-              label="Secretary"
-              name="secretary"
-              checked={formData.secretary}
-              onChange={handleChange}
-            />
-            <FormCheckbox
-              label="Joint Secretary"
-              name="jointsecretary"
-              checked={formData.jointsecretary}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
 
         <FormInput
-          label="Student Name /EID:"
+          label="Proposed Faculty Advisor 1 Name/EID"
           type="text"
-          name="eid"
-          value={formData.eid}
+          name="pfa1name"
+          value={formData.pfa1name}
           onChange={handleChange}
           required
         />
+
         <FormInput
           label="Mobile Number:"
           type="text"
-          name="number"
-          value={formData.number}
+          name="pfa1number"
+          value={formData.pfa1number}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Email ID:"
+          label="Proposed Faculty Advisor 2 Name/EID"
           type="text"
-          name="id"
-          value={formData.id}
+          name="pfa2name"
+          value={formData.pfa2name}
           onChange={handleChange}
-          required
         />
+
         <FormInput
-          label="Current Year:"
-          type="number"
-          name="year"
-          value={formData.year}
-          onChange={handleChange}
-          required
-        />
-        <FormInput
-          label="Prior Experience in Co-Curricular Domain(Years):"
-          type="number"
-          name="curricular"
-          value={formData.curricular}
-          onChange={handleChange}
-          required
-        />
-        <FormInput
-          label="Department/Program:"
+          label="Mobile Number:"
           type="text"
-          name="program"
-          value={formData.program}
+          name="pfa2number"
+          value={formData.pfa2number}
           onChange={handleChange}
-          required
         />
+
         <FormInput
-          label="Department/Specialization:"
+          label="Proposed Faculty Co-Advisor 1 Name/EID"
           type="text"
-          name="specialization"
-          value={formData.specialization}
+          name="pfcoa1name"
+          value={formData.pfcoa1name}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Previous Related Achievements Certifications/ Recognitions/ Patents/ Research papers [SCI,SCOPUS]/Leadership]:"
+          label="Mobile Number:"
           type="text"
-          name="achievements"
-          value={formData.achievements}
+          name="pfcoa1number"
+          value={formData.pfcoa1number}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Proposed Vision for Club:"
+          label="Proposed Faculty Co-Advisor 2 Name/EID"
           type="text"
-          name="club2"
-          value={formData.club2}
+          name="pfcoa2name"
+          value={formData.pfcoa2name}
           onChange={handleChange}
-          required
         />
+
         <FormInput
-          label="Proposed Flagship Event:"
+          label="Mobile Number:"
           type="text"
-          name="event"
-          value={formData.event}
+          name="pfcoa2number"
+          value={formData.pfcoa2number}
           onChange={handleChange}
-          required
         />
+
         <FormInput
-          label="Nomination:"
+          label="Secretary / Joint Secretary Details:"
           type="text"
-          name="nomination"
-          value={formData.nomination}
+          name="studentsecretary"
+          value={formData.studentsecretary}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Nomination by:"
+          label="Proposed Student Secretary 1 Name/UID"
           type="text"
-          name="by"
-          value={formData.by}
+          name="pss1name"
+          value={formData.pss1name}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Name:"
+          label="Mobile Number:"
           type="text"
-          name="name2"
-          value={formData.name2}
+          name="pfa1number"
+          value={formData.pss1number}
           onChange={handleChange}
           required
         />
+
         <FormInput
-          label="Designation:"
+          label="Proposed Student Secretary 2 Name/UID"
           type="text"
-          name="designation"
-          value={formData.designation}
+          name="pss2name"
+          value={formData.pss2name}
+          onChange={handleChange}
+        />
+
+        <FormInput
+          label="Mobile Number:"
+          type="text"
+          name="pfa2number"
+          value={formData.pss2number}
+          onChange={handleChange}
+        />
+
+        <FormInput
+          label="Proposed Student Joint Secretary 1 Name/UID"
+          type="text"
+          name="psjs1name"
+          value={formData.psjs1name}
           onChange={handleChange}
           required
         />
+
+        <FormInput
+          label="Mobile Number:"
+          type="text"
+          name="psjs2number"
+          value={formData.psjs2number}
+          onChange={handleChange}
+          required
+        />
+
+        <FormInput
+          label="Proposed Student Joint Secretary 2 Name/UID"
+          type="text"
+          name="pfcoa2name"
+          value={formData.pfcoa2name}
+          onChange={handleChange}
+        />
+
+        <FormInput
+          label="Mobile Number:"
+          type="text"
+          name="pfcoa2number"
+          value={formData.pfcoa2number}
+          onChange={handleChange}
+        />
+
+        <FormInput
+          label="Recommendation:"
+          type="text"
+          name="recommendation"
+          value={formData.recommendation}
+          onChange={handleChange}
+          required
+        />
+
+        <FormInput
+          label="Chief Advisor Governing Council:"
+          type="text"
+          name="council"
+          value={formData.council}
+          onChange={handleChange}
+          required
+        />
+
+        <FormInput
+          label="Recommended/Not-Recommended:"
+          type="text"
+          name="recnotrec"
+          value={formData.recnotrec}
+          onChange={handleChange}
+          required
+        />
+
         <FormInput
           label="Signature:"
           type="text"
