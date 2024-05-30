@@ -217,6 +217,15 @@ const Form4 = () => {
           </div>
         </div>
 
+        <FormInput
+          label="Name & Department:"
+          type="text"
+          name="namedept"
+          value={formData.namedept}
+          onChange={handleChange}
+          required
+        />
+
         <div>
           <label className="from-accent-foreground mb-2 mt-2 block">
             Nature of Entity:
@@ -328,6 +337,24 @@ const Form4 = () => {
           name="pfcoa2number"
           value={formData.pfcoa2number}
           onChange={handleChange}
+        />
+
+        <FormInput
+          label="Faculty Mentor Name/EID"
+          type="text"
+          name="mentorname"
+          value={formData.mentorname}
+          onChange={handleChange}
+          required
+        />
+
+        <FormInput
+          label="Mobile Number:"
+          type="text"
+          name="mentornumber"
+          value={formData.mentornumber}
+          onChange={handleChange}
+          required
         />
 
         <FormInput
