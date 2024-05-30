@@ -26,7 +26,7 @@ const FormDataList = ({ formName }) => {
     };
 
     fetchData();
-  }, [selectedForm]);
+  }, []);
 
   const groupFormDataByDate = () => {
     const groupedData = {};
@@ -45,11 +45,10 @@ const FormDataList = ({ formName }) => {
       const response = await axios.get(
         `/user/generate-pdf-form1/${id}/${selectedForm}`,
         {
-          responseType: "blob", // Ensure response is treated as a binary file
+          responseType: "blob",
         }
       );
 
-      // Create a blob URL for the PDF and open it in a new tab
       const pdfBlob = new Blob([response.data], { type: "application/pdf" });
       const pdfUrl = URL.createObjectURL(pdfBlob);
       window.open(pdfUrl);
